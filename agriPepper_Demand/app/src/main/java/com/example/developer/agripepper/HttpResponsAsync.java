@@ -2,7 +2,6 @@ package com.example.developer.agripepper;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.util.JsonToken;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -16,10 +15,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-//import com.fasterxml.jackson.core.JsonFactory;
-//import com.fasterxml.jackson.core.JsonParseException;
-//import com.fasterxml.jackson.core.JsonParser;
-//import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 
 /**
  *
@@ -72,36 +71,36 @@ public class HttpResponsAsync extends AsyncTask<String, Void, String> {
 
     protected void onPostExecute(String result) {
 
-//        TextView tv = (TextView) mainActivity.findViewById(R.id.action_settings);
-//        JsonFactory factory = new JsonFactory();
-//        try {
-//            JsonParser parser = factory.createParser(result);
-//            ArrayList<String> title = new ArrayList<String>();
-//            int i = 0;
-//            while (parser.nextToken() != JsonToken.END_OBJECT) {
-//                while (parser.nextToken() != JsonToken.END_OBJECT) {
-//                    String name = parser.getCurrentName();
-//                    if (name != null) {
-//                        parser.nextToken();
-//                        Log.d("name", name);
-//                        if (name.equals("title")) {
-//                            title.add(parser.getText());
-//                        }
-//                    }
-//                }
-//            }
-//            String titles = "";
-//            for (i = 0; i < title.size(); i++) {
-//                titles = titles + "title:" + title.get(i) + "\n";
-//            }
-//            tv.setText(titles);
-//        } catch (JsonParseException e) {
-//            // TODO 自動生成された catch ブロック
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            // TODO 自動生成された catch ブロック
-//            e.printStackTrace();
-//        }
+        TextView tv = (TextView) mainActivity.findViewById(R.id.action_settings);
+        JsonFactory factory = new JsonFactory();
+        try {
+            JsonParser parser = factory.createParser(result);
+            ArrayList<String> title = new ArrayList<String>();
+            int i = 0;
+            while (parser.nextToken() != JsonToken.END_OBJECT) {
+                while (parser.nextToken() != JsonToken.END_OBJECT) {
+                    String name = parser.getCurrentName();
+                    if (name != null) {
+                        parser.nextToken();
+                        Log.d("name", name);
+                        if (name.equals("title")) {
+                            title.add(parser.getText());
+                        }
+                    }
+                }
+            }
+            String titles = "";
+            for (i = 0; i < title.size(); i++) {
+                titles = titles + "title:" + title.get(i) + "\n";
+            }
+            tv.setText(titles);
+        } catch (JsonParseException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO 自動生成された catch ブロック
+            e.printStackTrace();
+        }
         //tv.setText(result);
     }
 }
